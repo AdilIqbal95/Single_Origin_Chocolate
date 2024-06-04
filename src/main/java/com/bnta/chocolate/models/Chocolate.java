@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "chocolates")
-//@JsonIgnoreProperties({"chocolates"})
+
 public class Chocolate {
 
 
@@ -23,6 +23,7 @@ public class Chocolate {
 
     @ManyToOne
     @JoinColumn(name = "estate_id")
+    @JsonIgnoreProperties({"chocolates"})
     private Estate estate;
 
     public Chocolate(String name, int cocoaPercentage, Estate estate) {
