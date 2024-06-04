@@ -25,16 +25,8 @@ public class ChocolateService {
         return chocolate;
     }
 
-//    public List<Chocolate> filterChocolateByEstate(Estate estate) {
-//        List<Chocolate> ghishChocolates = new ArrayList<>();
-//        List<Chocolate> adilChocolates = new ArrayList<>();
-//
-//        for (Chocolate chocolate : this.getAllChocolates()) {
-//            if (chocolate.getEstate().equals("estateGhish")) {
-//                ghishChocolates.add(chocolate);
-//            } else if (chocolate.getEstate().equals("estateAdil")) {
-//                adilChocolates.add(chocolate);
-//            }
-//        } return
+    public List<Chocolate> getChocolatesByCocoaPercentage(int cocoaPercentage) {
+        return chocolateRepository.findByCocoaPercentage(cocoaPercentage);
+    }
 
 }

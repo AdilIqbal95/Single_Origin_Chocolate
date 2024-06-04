@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/chocolates")
@@ -18,8 +19,14 @@ public class ChocolateController {
     ChocolateService chocolateService;
 
     @GetMapping
-    public ResponseEntity<List<Chocolate>> getAllChocolates() {
-        return new ResponseEntity<>(chocolateService.getAllChocolates(), HttpStatus.OK);
+    public ResponseEntity<List<Chocolate>> getAllChocolates(@RequestParam Optional<Integer> cocoaPercentage ) {
+        List<Chocolate> chocolates;
+        if (cocoaPercentage.isPresent()  && (cocoaPercentage.get() > 45)) {
+            chocolates = chocolateService.getChocolatesByCocoaPercentage(cocoaPercentage.get());
+        } else {
+            chocolates = chocolateService.getAllChocolates();
+        }
+         return new ResponseEntity<>(chocolates, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
